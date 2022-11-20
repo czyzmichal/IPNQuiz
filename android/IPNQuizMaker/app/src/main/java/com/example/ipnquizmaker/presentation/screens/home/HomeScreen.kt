@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.ipnquizmaker.R
+import com.example.ipnquizmaker.presentation.Screen
 
 @Composable
 fun HomeScreen(navController: NavController) {
@@ -93,7 +94,9 @@ fun HomeScreen(navController: NavController) {
                 modifier = Modifier.weight(1f)
             )
 
-            IconButton(onClick = {}) {
+            IconButton(onClick = {
+                navController.navigate(Screen.QuizGenerationScreen.route)
+            }) {
                 Image(
                     painter = painterResource(id = R.drawable.ic_forward_arrow),
                     contentDescription = "",

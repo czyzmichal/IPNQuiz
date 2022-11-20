@@ -13,6 +13,8 @@ from starlette.responses import RedirectResponse
 import models
 import schemas
 
+from parser import IPNParser
+
 from database import SessionLocal, engine
 
 models.Base.metadata.create_all(bind=engine)
@@ -98,4 +100,6 @@ async def login(db: models.User = Depends(get_db)):
 
 @app.post("/search_for_phrase/")
 async def create_quiz(quiz_phrase: str, db: models.Quiz = Depends(get_db)):
-    pass
+    parser = IPNParser()
+    phrasesWithSentces = parser.getKeyWordsForPhrase(quiz_phrase)
+    return phrasesWithSentces
