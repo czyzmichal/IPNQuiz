@@ -100,6 +100,6 @@ class IPNParser:
         return result
 
 
-parser = IPNParser()
-phrasesWithSentces = parser.getKeyWordsForPhrase('piłsudski')
-print(phrasesWithSentces)
+# parser = IPNParser()
+# phrasesWithSentces = parser.getKeyWordsForPhrase('piłsudski')
+# print(phrasesWithSentces)
