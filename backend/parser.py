@@ -3,6 +3,16 @@ import yake
 from bs4 import BeautifulSoup, SoupStrainer
 import json
 
+import xml.etree.ElementTree as ET
+def getUrlsForMainPage():
+    tree = ET.parse('sitemap.xml')
+    root = tree.getroot()
+    urls = []
+    for child in root:
+        for child1 in child:
+            if 'loc' in child1.tag:
+                urls.append(child1.text)
+    return urls
 def resultDiv(url):
     page = requests.get(url)
     soup = BeautifulSoup(page.content, "html.parser")
@@ -48,23 +58,25 @@ class IPNParser:
         return result
 
     def getKeyWordsForPhrase(self, phrase):
-        links = self.getLinks(phrase)
+        links = getUrlsForMainPage()
         texts = []
         allTexts = ""
         for link in links:
             # print(link)
-            if ".pdf" in links:
-                texts += self.getTextFromPDF(link)
+            if ".pdf" in link:
+                # texts += self.getTextFromPDF(link)
+                print(link)
             else:
                 texts += self.getTextsForWEB(link)
         for text in texts:
-            allTexts = allTexts + text
+            if phrase in text.lower():
+                allTexts = allTexts + " "+text
         language = "pl"
         max_ngram_size = 3
-        deduplication_threshold = 0.9
+        deduplication_threshold = 0.8
         deduplication_algo = "seqm"
-        windowSize = 1
-        numOfKeywords = 100
+        windowSize = 5
+        numOfKeywords = 10
         # print(allTexts)
         e = yake.KeywordExtractor(
             lan=language,
@@ -72,7 +84,7 @@ class IPNParser:
             dedupLim=deduplication_threshold,
             dedupFunc=deduplication_algo,
             windowsSize=windowSize,
-            top=numOfKeywords,
+            top=numOfKeywords, stopwords=None,
             features=None,
         )
         extract = e.extract_keywords(allTexts)
@@ -100,6 +112,6 @@ class IPNParser:
         return result
 
 
-# parser = IPNParser()
-# phrasesWithSentces = parser.getKeyWordsForPhrase('piłsudski')
-# print(phrasesWithSentces)
+parser = IPNParser()
+phrasesWithSentces = parser.getKeyWordsForPhrase('piłsudski')
+print(phrasesWithSentces)
