@@ -20,8 +20,7 @@ class QuestionMaker:
             if difficulty == 0:
                 for sentence in dict[phrase]:
                     match = re.findall('[1][0-9]{3}', sentence)
-                    if len(match)>1:
-                        
+                    if len(match)>0:
                         questions.append(self.getQuestionForSentance(sentence,difficulty))
         return questions
             

@@ -71,10 +71,10 @@ class IPNParser:
             if phrase in text.lower():
                 allTexts = allTexts + " "+text
         language = "pl"
-        max_ngram_size = 3
-        deduplication_threshold = 0.8
+        max_ngram_size = 2
+        deduplication_threshold = 0.9
         deduplication_algo = "seqm"
-        windowSize = 5
+        windowSize = 3
         numOfKeywords = 10
         # print(allTexts)
         e = yake.KeywordExtractor(
