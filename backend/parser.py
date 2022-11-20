@@ -1,7 +1,7 @@
 import requests
 import yake
 from bs4 import BeautifulSoup, SoupStrainer
-
+import json
 
 def resultDiv(url):
     page = requests.get(url)
@@ -95,9 +95,11 @@ class IPNParser:
         result = {}
         for x in list(phrasesWithSentces)[0:10]:
             result[x] = phrasesWithSentces[x]["sentences"]
+        with open(phrase+".json", "w") as outfile:
+            json.dump(result, outfile)
         return result
 
 
-# parser = IPNParser()
-# phrasesWithSentces = parser.getKeyWordsForPhrase('piłsudski')
-# print(phrasesWithSentces)
+parser = IPNParser()
+phrasesWithSentces = parser.getKeyWordsForPhrase('piłsudski')
+print(phrasesWithSentces)
