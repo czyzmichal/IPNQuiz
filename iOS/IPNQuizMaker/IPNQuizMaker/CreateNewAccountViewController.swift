@@ -48,7 +48,7 @@ class CreateNewAccountViewController: UIViewController {
 
 }
 
-extension LoginViewController: UITextFieldDelegate {
+extension CreateNewAccountViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

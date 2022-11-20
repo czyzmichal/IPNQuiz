@@ -13,9 +13,11 @@
 		416607EE29291A3600A54FBF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 416607ED29291A3600A54FBF /* Assets.xcassets */; };
 		416607F129291A3600A54FBF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 416607EF29291A3600A54FBF /* LaunchScreen.storyboard */; };
 		416607F92929256B00A54FBF /* CreateNewAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416607F82929256B00A54FBF /* CreateNewAccountViewController.swift */; };
-		416607FB2929257F00A54FBF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416607FA2929257F00A54FBF /* LoginViewController.swift */; };
 		416607FD29295B3100A54FBF /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416607FC29295B3100A54FBF /* MainTabBarViewController.swift */; };
 		416607FF292962F200A54FBF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416607FE292962F200A54FBF /* HomeViewController.swift */; };
+		4166080229299ADE00A54FBF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4166080129299ADE00A54FBF /* LoginViewController.swift */; };
+		4166080429299BF100A54FBF /* QuizCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4166080329299BF100A54FBF /* QuizCell.swift */; };
+		416608062929AC9700A54FBF /* CreateQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416608052929AC9700A54FBF /* CreateQuizViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,9 +29,11 @@
 		416607F029291A3600A54FBF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		416607F229291A3600A54FBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		416607F82929256B00A54FBF /* CreateNewAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewAccountViewController.swift; sourceTree = "<group>"; };
-		416607FA2929257F00A54FBF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		416607FC29295B3100A54FBF /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		416607FE292962F200A54FBF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		4166080129299ADE00A54FBF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		4166080329299BF100A54FBF /* QuizCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizCell.swift; sourceTree = "<group>"; };
+		416608052929AC9700A54FBF /* CreateQuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuizViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,18 +66,28 @@
 		416607E329291A2D00A54FBF /* IPNQuizMaker */ = {
 			isa = PBXGroup;
 			children = (
+				416608002929999B00A54FBF /* New Group */,
 				416607E429291A2D00A54FBF /* AppDelegate.swift */,
 				416607E629291A2D00A54FBF /* SceneDelegate.swift */,
 				416607FC29295B3100A54FBF /* MainTabBarViewController.swift */,
+				416608052929AC9700A54FBF /* CreateQuizViewController.swift */,
 				416607FE292962F200A54FBF /* HomeViewController.swift */,
+				4166080129299ADE00A54FBF /* LoginViewController.swift */,
+				4166080329299BF100A54FBF /* QuizCell.swift */,
 				416607F82929256B00A54FBF /* CreateNewAccountViewController.swift */,
-				416607FA2929257F00A54FBF /* LoginViewController.swift */,
 				416607EA29291A2D00A54FBF /* Main.storyboard */,
 				416607ED29291A3600A54FBF /* Assets.xcassets */,
 				416607EF29291A3600A54FBF /* LaunchScreen.storyboard */,
 				416607F229291A3600A54FBF /* Info.plist */,
 			);
 			path = IPNQuizMaker;
+			sourceTree = "<group>";
+		};
+		416608002929999B00A54FBF /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,10 +161,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4166080229299ADE00A54FBF /* LoginViewController.swift in Sources */,
 				416607F92929256B00A54FBF /* CreateNewAccountViewController.swift in Sources */,
 				416607E529291A2D00A54FBF /* AppDelegate.swift in Sources */,
 				416607FD29295B3100A54FBF /* MainTabBarViewController.swift in Sources */,
-				416607FB2929257F00A54FBF /* LoginViewController.swift in Sources */,
+				4166080429299BF100A54FBF /* QuizCell.swift in Sources */,
+				416608062929AC9700A54FBF /* CreateQuizViewController.swift in Sources */,
 				416607E729291A2D00A54FBF /* SceneDelegate.swift in Sources */,
 				416607FF292962F200A54FBF /* HomeViewController.swift in Sources */,
 			);

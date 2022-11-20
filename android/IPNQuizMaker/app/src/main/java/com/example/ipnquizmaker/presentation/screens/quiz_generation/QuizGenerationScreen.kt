@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.ipnquizmaker.R
+import com.example.ipnquizmaker.presentation.Screen
 
 @Composable
 fun QuizGenerationScreen(navController: NavController) {
@@ -218,7 +219,7 @@ fun QuizGenerationScreen(navController: NavController) {
             modifier = Modifier.weight(1f).padding(16.dp)
         ) {
             Button(
-                onClick = {  },
+                onClick = { navController.navigate(Screen.QuizSuggestionsScreen.route) },
                 colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFEC4545)),
                 modifier = Modifier.fillMaxWidth().height(48.dp)
             ) {
