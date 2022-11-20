@@ -1,13 +1,6 @@
 import requests
-from bs4 import BeautifulSoup
-# from parser import Parser
 import yake
-import pprint
-import requests
 from bs4 import BeautifulSoup, SoupStrainer
-from summa.summarizer import summarize
-import httplib2
-    
 def resultDiv(url):
     page = requests.get(url)
     soup = BeautifulSoup(page.content, 'html.parser')
