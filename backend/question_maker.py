@@ -26,4 +26,4 @@ class QuestionMaker:
         return questions
             
 
-print(QuestionMaker().getSentencesForPhrasesAndDifficulty("piłsudski",['Józefa Piłsudskiego'],0))
+# print(QuestionMaker().getSentencesForPhrasesAndDifficulty("piłsudski",['Józefa Piłsudskiego'],0))

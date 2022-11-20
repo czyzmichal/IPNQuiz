@@ -63,11 +63,10 @@ class IPNParser:
         allTexts = ""
         for link in links:
             # print(link)
-            if ".pdf" in link:
-                # texts += self.getTextFromPDF(link)
-                print(link)
-            else:
+            if  ".pdf" not in link:
                 texts += self.getTextsForWEB(link)
+
+                
         for text in texts:
             if phrase in text.lower():
                 allTexts = allTexts + " "+text
@@ -112,6 +111,6 @@ class IPNParser:
         return result
 
 
-parser = IPNParser()
-phrasesWithSentces = parser.getKeyWordsForPhrase('piłsudski')
-print(phrasesWithSentces)
+# parser = IPNParser()
+# phrasesWithSentces = parser.getKeyWordsForPhrase('piłsudski')
+# print(phrasesWithSentces)
