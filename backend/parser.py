@@ -11,6 +11,8 @@ class IPNParser:
         if len(phrase.split(' '))>1:
             for text in phrase.split(' '):
                 resultText = resultText +"+"+text
+        else:
+            resultText = phrase
         # url = "https://szukaj.ipn.gov.pl/search?q="+resultText+"&site=&site%5B%5D=pages_przystanek_historia&btnG=Szukaj&client=default_frontend&output=xml_no_dtd&proxystylesheet=default_frontend&sort=date%3AD%3AL%3Ad1&wc=200&wc_mc=1&oe=UTF-8&ie=UTF-8&ud=1&exclude_apps=1&tlen=200&size=10&doctype=WEB&filters=eyJXc3p5c3RraWVfc3Ryb255IjoxNjQyMCwicGFnZXNfcHJ6eXN0YW5la19oaXN0b3JpYSI6OTIwMCwicGFnZXNfcHdpcG4iOjI3MjgsInBhZ2VzX2lwbiI6ODEzLCJwYWdlc19wb3puYW5pcG4iOjUyMiwicGFnZXNfY2VudHJhbGFpcG5fZW4iOjM2NywicGFnZXNfa3NpZWdhcm5pYWlwbiI6MzUyLCJwYWdlc19rYXRvd2ljZWlwbiI6MzM4LCJwYWdlc19jZW50cnVtZWR1a2FjeWpuZSI6MjU5LCJwYWdlc19pcG5wb2N6eXRhaiI6MjU0LCJwYWdlc19lbmN5a2xvcGVkaWFfc29saWRhcm5vc2NpIjoyMDV9"
         url = "https://szukaj.ipn.gov.pl/site/search?q="+resultText+"&site=&site%5B%5D=pages_przystanek_historia&btnG=Szukaj&client=default_frontend&output=xml_no_dtd&proxystylesheet=default_frontend&sort=date%3AD%3AL%3Ad1&wc=200&wc_mc=1&oe=UTF-8&ie=UTF-8&ud=1&exclude_apps=1&tlen=200&size=50"
         results = resultDiv(url)
@@ -74,5 +76,5 @@ class IPNParser:
 
 
 # parser = IPNParser()
-# phrasesWithSentces = parser.getKeyWordsForPhrase('powstanie warszawskie')
+# phrasesWithSentces = parser.getKeyWordsForPhrase('piłsudski')
 # print(phrasesWithSentces)
