@@ -27,7 +27,7 @@ import com.example.ipnquizmaker.presentation.Screen
 @Composable
 fun QuizSuggestionsScreen(
     navController: NavController,
-    viewModel: QuizSuggestionsScreenViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
+    viewModel: QuizSuggestionsViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
 ) {
     val state = viewModel.state
 

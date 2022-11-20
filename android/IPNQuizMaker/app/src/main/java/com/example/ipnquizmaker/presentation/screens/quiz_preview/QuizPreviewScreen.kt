@@ -2,9 +2,13 @@ package com.example.ipnquizmaker.presentation.screens.quiz_preview
 
 import android.content.Intent
 import android.net.Uri
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -22,8 +26,14 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.ipnquizmaker.R
 
+@ExperimentalAnimationApi
 @Composable
-fun QuizPreviewScreen(navController: NavHostController) {
+fun QuizPreviewScreen(
+    navController: NavHostController,
+    viewModel: QuizPreviewViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
+) {
+    val state = viewModel.state
+
     Column(
         verticalArrangement = Arrangement.Top,
         modifier = Modifier
@@ -64,67 +74,72 @@ fun QuizPreviewScreen(navController: NavHostController) {
             modifier = Modifier.padding(horizontal = 16.dp)
         )
 
-        Row(
-            horizontalArrangement = Arrangement.Start,
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .padding(horizontal = 16.dp, vertical = 16.dp)
-                .height(56.dp)
-                .background(
-                    shape = RoundedCornerShape(8.dp),
-                    color = Color(0xFFF3F4F5)
-                )
-                .clickable {
-                    // TODO: download PDF
-                }
-        ) {
-            Spacer(modifier = Modifier.width(16.dp))
-
-            Image(
-                painter = painterResource(id = R.drawable.ic_download_pdf),
-                contentDescription = "",
-                modifier = Modifier.size(size = 28.dp)
-            )
-
-            Text(
-                text = "Pobierz Quiz",
-                fontSize = 12.sp,
+        AnimatedVisibility(visible = state.isNotEmpty()) {
+            Row(
+                horizontalArrangement = Arrangement.Start,
+                verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
-                    .weight(1f)
-                    .padding(horizontal = 16.dp)
-            )
+                    .padding(horizontal = 16.dp, vertical = 16.dp)
+                    .height(56.dp)
+                    .background(
+                        shape = RoundedCornerShape(8.dp),
+                        color = Color(0xFFF3F4F5)
+                    )
+                    .clickable {
+                        // TODO: download PDF
+                    }
+            ) {
+                Spacer(modifier = Modifier.width(16.dp))
+
+                Image(
+                    painter = painterResource(id = R.drawable.ic_download_pdf),
+                    contentDescription = "",
+                    modifier = Modifier.size(size = 28.dp)
+                )
+
+                Text(
+                    text = "Pobierz Quiz",
+                    fontSize = 12.sp,
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(horizontal = 16.dp)
+                )
+            }
         }
 
-        listOf(
-            Question(
-                question = "Powstanie Warszawskie było wymierzone militarnie przeciw ________",
-                answersMap = mapOf(
-                    "A)" to "ZSRR",
-                    "B)" to "3 Rzeszy",
-                    "C)" to "RP",
-                ),
-                correctAnswer = "B)",
-                source = "https://www.google.pl"
-            ),
-            Question(
-                question = "Operacja wojskowa zorganizowana i podjęta przez oddziały Armii Krajowej przeciw wojskom niemieckim to ________",
-                answersMap = mapOf(
-                    "A)" to "ZSRR",
-                    "B)" to "Akcja “Burza”",
-                    "C)" to "RP",
-                ),
-                correctAnswer = "B)",
-                source = "https://www.google.pl"
-            )
-        ).forEachIndexed { index, question ->
-            QuizQuestionCard(
-                questionNumber = index + 1,
-                question = question.question,
-                answersMap = question.answersMap,
-                correctAnswer = question.correctAnswer,
-                source = question.source,
-                modifier = Modifier.padding(all = 16.dp)
-            )
+        AnimatedContent(
+            targetState = state.isNotEmpty(),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 16.dp)
+        ) { targetState ->
+            if (targetState) {
+                Column(modifier = Modifier.fillMaxWidth()) {
+                    state.forEachIndexed { index, question ->
+                        QuizQuestionCard(
+                            questionNumber = index + 1,
+                            question = question.question,
+                            answersMap = question.answersMap,
+                            correctAnswer = question.correctAnswer,
+                            source = question.source,
+                            modifier = Modifier.padding(bottom = 16.dp)
+                        )
+                    }
+                }
+            } else {
+                Column(
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier.height(400.dp)
+                ) {
+                    CircularProgressIndicator(color = Color(0xFFEC4545))
+
+                    Text(
+                        text = "Łamanie enigmy...",
+                        modifier = Modifier.padding(top = 16.dp)
+                    )
+                }
+            }
         }
     }
 }
@@ -275,10 +290,3 @@ fun QuizQuestionCard(
         )
     }
 }
-
-data class Question(
-    val question: String,
-    val answersMap: Map<String, String>,
-    val correctAnswer: String,
-    val source: String,
-)
