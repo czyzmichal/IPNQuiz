@@ -1,7 +1,6 @@
 package com.example.ipnquizmaker.presentation
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -10,6 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.ipnquizmaker.presentation.screens.home.HomeScreen
 import com.example.ipnquizmaker.presentation.screens.quiz_generation.QuizGenerationScreen
+import com.example.ipnquizmaker.presentation.screens.quiz_preview.QuizPreviewScreen
 import com.example.ipnquizmaker.presentation.screens.quiz_suggestions.QuizSuggestionsScreen
 import com.example.ipnquizmaker.presentation.ui.theme.IPNQuizMakerTheme
 import org.json.JSONArray
@@ -38,6 +38,10 @@ class MainActivity : ComponentActivity() {
 
                     composable(route = Screen.QuizSuggestionsScreen.route) {
                         QuizSuggestionsScreen(navController = navController)
+                    }
+
+                    composable(route = Screen.QuizPreviewScreen.route) {
+                        QuizPreviewScreen(navController = navController)
                     }
                 }
             }

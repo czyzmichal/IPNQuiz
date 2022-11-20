@@ -10,7 +10,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 
-class QuizSuggestionsScreenViewModel : ViewModel() {
+class QuizSuggestionsViewModel : ViewModel() {
     var state by mutableStateOf(emptyList<String>())
 
     init {

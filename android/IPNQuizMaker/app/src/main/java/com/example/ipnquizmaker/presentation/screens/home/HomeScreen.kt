@@ -153,13 +153,11 @@ fun QuizCard(modifier: Modifier = Modifier) {
                 .padding(horizontal = 16.dp)
         )
 
-        IconButton(onClick = {}) {
-            Image(
-                painter = painterResource(id = R.drawable.ic_download_pdf),
-                contentDescription = "",
-                modifier = Modifier.size(size = 28.dp)
-            )
-        }
+        Image(
+            painter = painterResource(id = R.drawable.ic_download_pdf),
+            contentDescription = "",
+            modifier = Modifier.size(size = 28.dp)
+        )
 
         Spacer(modifier = Modifier.width(16.dp))
     }

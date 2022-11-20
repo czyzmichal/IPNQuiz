@@ -1,6 +1,7 @@
 package com.example.ipnquizmaker.presentation.screens.quiz_suggestions
 
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -20,12 +21,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.ipnquizmaker.R
+import com.example.ipnquizmaker.presentation.Screen
 
 @ExperimentalAnimationApi
 @Composable
 fun QuizSuggestionsScreen(
     navController: NavController,
-    viewModel: QuizSuggestionsScreenViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
+    viewModel: QuizSuggestionsViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
 ) {
     val state = viewModel.state
 
@@ -62,13 +64,13 @@ fun QuizSuggestionsScreen(
         )
 
         AnimatedContent(
-            targetState = state.isEmpty(),
+            targetState = state.isNotEmpty(),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp)
                 .weight(1f)
         ) { targetState ->
-            if (!targetState) {
+            if (targetState) {
                 LazyColumn(verticalArrangement = Arrangement.Top) {
                     items(state) { phrase ->
                         PhraseCard(
@@ -84,27 +86,38 @@ fun QuizSuggestionsScreen(
                 ) {
                     CircularProgressIndicator(color = Color(0xFFEC4545))
                     
-                    Text(text = "Odpalanie maszyny...")
+                    Text(
+                        text = "Odpalanie maszyny...",
+                        modifier = Modifier.padding(top = 16.dp)
+                    )
                 }
             }
         }
 
-        Column(
-            verticalArrangement = Arrangement.Bottom,
-            modifier = Modifier.padding(16.dp)
-        ) {
-            Button(
-                onClick = { },
-                colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFEC4545)),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(48.dp)
+        AnimatedVisibility(visible = state.isNotEmpty()) {
+            Column(
+                verticalArrangement = Arrangement.Bottom,
+                modifier = Modifier.padding(16.dp)
             ) {
-                Text(
-                    text = "Stwórz quiz!",
-                    color = Color.White,
-                    fontSize = 16.sp
-                )
+                Button(
+                    onClick = {
+                        navController.navigate(Screen.QuizPreviewScreen.route) {
+                            popUpTo(Screen.QuizGenerationScreen.route) {
+                                inclusive = true
+                            }
+                        }
+                    },
+                    colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFEC4545)),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(48.dp)
+                ) {
+                    Text(
+                        text = "Stwórz quiz!",
+                        color = Color.White,
+                        fontSize = 16.sp
+                    )
+                }
             }
         }
     }
